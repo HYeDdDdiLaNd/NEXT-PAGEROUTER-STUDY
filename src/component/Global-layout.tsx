@@ -8,7 +8,7 @@ const GlobalLayout = ({ children }: { children: ReactNode }) => {
   return (
     <div className={style.container}>
       <Header></Header>
-      <main>{children}</main>
+      <main className={style.main}>{children}</main>
       <Footer></Footer>
     </div>
   );
