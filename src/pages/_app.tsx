@@ -2,6 +2,7 @@ import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+
 import { useEffect } from 'react';
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -15,6 +16,7 @@ export default function App({ Component, pageProps }: AppProps) {
     */
     router.prefetch('/test');
   }, []);
+
   const onClickBtnByMoveTestPage = () => {
     router.push('/test');
   };
