@@ -1,6 +1,11 @@
 import { useRouter } from 'next/router';
-import GlobalInput from '../../component/Global-input';
 import { ReactNode } from 'react';
+
+import GlobalInput from '../../component/Global-input';
+import BookItem from '../../component/BookItem';
+
+import style from './index.module.scss';
+import books from '@/mock/books.json';
 
 export default function Page() {
   const router = useRouter();
@@ -8,9 +13,13 @@ export default function Page() {
   const { q } = router.query; //쿼리 스트링: 페이지 경로 뒤에 물음표가 붙으면 search?q=정혜진
 
   return (
-    <>
-      <h2>{q}search 룰루리</h2>
-    </>
+    <div className={style.Search}>
+      <ul>
+        {books.map((bookItem) => (
+          <BookItem key={bookItem.id} {...bookItem} />
+        ))}
+      </ul>
+    </div>
   );
 }
 
