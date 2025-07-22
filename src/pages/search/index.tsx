@@ -1,4 +1,6 @@
 import { useRouter } from 'next/router';
+import GlobalInput from '../../component/Global-input';
+import { ReactNode } from 'react';
 
 export default function Page() {
   const router = useRouter();
@@ -11,3 +13,7 @@ export default function Page() {
     </>
   );
 }
+
+Page.getLayout = (page: ReactNode) => {
+  return <GlobalInput>{page}</GlobalInput>;
+};

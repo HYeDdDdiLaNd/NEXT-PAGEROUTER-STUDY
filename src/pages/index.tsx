@@ -1,4 +1,6 @@
 import style from './index.module.scss';
+import GlobalInput from '../component/Global-input';
+import { ReactNode } from 'react';
 export default function Home() {
   return (
     <>
@@ -6,3 +8,7 @@ export default function Home() {
     </>
   );
 }
+
+Home.getLayout = (page: ReactNode) => {
+  return <GlobalInput>{page}</GlobalInput>;
+};

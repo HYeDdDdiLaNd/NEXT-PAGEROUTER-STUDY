@@ -1,8 +1,9 @@
 import { useRouter } from 'next/router';
 import style from './Global-input.module.scss';
 import { useEffect, useState } from 'react';
+import type { ReactNode } from 'react';
 
-const GlobalInput = () => {
+const GlobalInput = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
   const q = router.query.q as string; //router.query 에는 next에서 기본적으로 정의해 놓은 타입이 있음.
   const [input, setInput] = useState('');
@@ -12,8 +13,14 @@ const GlobalInput = () => {
   };
 
   const onClickSubmit = () => {
-    if (!input) return;
+    if (!input || input === q) return;
     router.push(`/search?q=${input}`);
+  };
+
+  const onKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
+    if (e.key === 'Enter') {
+      onClickSubmit();
+    }
   };
 
   useEffect(() => {
@@ -21,16 +28,20 @@ const GlobalInput = () => {
   }, [q]); //새로고침 시 인풋 리셋 방지
 
   return (
-    <div className={style.searchInput}>
-      <input
-        type="text"
-        placeholder="검색어를 입력하세요."
-        value={input}
-        onChange={onChangeInput}
-      />
-      <button type="button" onClick={onClickSubmit}>
-        검색하기
-      </button>
+    <div>
+      <div className={style.searchInput}>
+        <input
+          type="text"
+          placeholder="검색어를 입력하세요."
+          value={input}
+          onChange={onChangeInput}
+          onKeyDown={onKeyDown}
+        />
+        <button type="button" onClick={onClickSubmit}>
+          검색하기
+        </button>
+      </div>
+      {children}
     </div>
   );
 };
