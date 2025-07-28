@@ -5,6 +5,7 @@ import type { ReactNode } from 'react';
 
 const GlobalInput = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
+console.log(router)
   const q = router.query.q as string; //router.query 에는 next에서 기본적으로 정의해 놓은 타입이 있음.
   const [input, setInput] = useState('');
 
@@ -13,8 +14,8 @@ const GlobalInput = ({ children }: { children: ReactNode }) => {
   };
 
   const onClickSubmit = () => {
-    if (!input || input === q) return;
-    router.push(`/search?q=${input}`);
+    if (!input || input === q) return; //빈 값이거나 같은 값을 검색했을 경우
+    router.push(`/search?q=${input}`); //push 페이지를 이동시킴.
   };
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
