@@ -1,14 +1,12 @@
 
 import type {BookItem} from '@/util/types';
-export default async function fetchBooks(q?: string, id?: number): Promise<BookItem[]> {
+export default async function fetchBooks(q?: string): Promise<BookItem[]> {
     //'?' : 선택적 프로퍼티
     let url = `http://localhost:12345/book`;
 
     if(q) {
         url += `/search?q=${q}`; //어떤 값을 줘야 보내주지..
-    } else if (id) {
-        url += `/${id}`
-    }
+    } 
 
     try {
         const response = await fetch(url); //데이터 가져오는거 기다리기.
