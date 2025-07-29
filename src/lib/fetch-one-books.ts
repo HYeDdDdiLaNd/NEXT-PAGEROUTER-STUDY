@@ -1,6 +1,6 @@
 
-import type {BookItem} from '@/util/types';
-export default async function fetchBooks(id: number): Promise<BookItem | null> {
+import type {BookItemType} from '@/util/types';
+export default async function fetchBooks(id: number): Promise<BookItemType | null> {
     //하나의 데이터만 반환한다.
     const url = `http://localhost:12345/book/${id}`;
     try {

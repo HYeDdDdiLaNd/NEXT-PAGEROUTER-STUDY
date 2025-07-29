@@ -1,9 +1,9 @@
 import style from './BookItem.module.scss';
 import Image from 'next/image';
-import type { BookItem } from '@/util/types';
+import type { BookItemType } from '@/util/types';
 import Link from 'next/link';
 
-type Props = Omit<BookItem, 'description'> & {
+type Props = Omit<BookItemType, 'description'> & {
   description?: string;
 };
 

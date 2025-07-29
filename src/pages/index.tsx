@@ -2,13 +2,13 @@ import style from './index.module.scss';
 import GlobalInput from '../component/Global-input';
 import BookItem from '../component/BookItem';
 import { ReactNode } from 'react';
-import { InferGetServerSidePropsType } from 'next';
+import { InferGetStaticPropsType } from 'next';
 import fetchBooks from '@/lib/fetch-books';
 import fetchRandomBooks from '@/lib/random-books';
 
-//오직 한번만 서버측에서 실행되는 함수
-export const getServerSideProps = async() => {
-    
+//SSG방식오직 한번만 서버측에서 실행되는 함수
+export const getStaticProps = async() => {
+    //console.log('getStaticProps 실행'); //서버사이드 렌더링 시에만 실행됨. 브라우저에서는 실행되지 않음.
     //직렬임. allBooks 불러오고, 끝나면 recommendBooks 불러오고
     // const allBooks = await fetchBooks();
     // const recommendBooks = await fetchRandomBooks();
@@ -23,8 +23,11 @@ export const getServerSideProps = async() => {
     }
 
 }
-export default function Home({allBooks, recommendBooks} : InferGetServerSidePropsType<typeof getServerSideProps>) {
-    console.log(allBooks); //이렇게하면 두번 콘솔에 출력된다. 1. 서버사이드렌더링 사전 렌더링 시, 2. js번들로 전달될때 브라우저에서 한번
+export default function Home({allBooks, recommendBooks} : InferGetStaticPropsType<typeof getStaticProps>) {
+    //console.log(allBooks); //이렇게하면 두번 콘솔에 출력된다. 1. 서버사이드렌더링 사전 렌더링 시, 2. js번들로 전달될때 브라우저에서 한번
+    //static은 SSG방식, Serverside는 SSR방식으로 페이지를 렌더링하는 방법이다. 
+    //Serverside는은 최신화가 잘되고 static은 빠르지만 최신화가 잘 되지 않는다.
+    //또한 statice은 빌드 시 한번 만 실행되기 때문에 쿼리 스트링 등 페이지가 렌더링 되고 나서의 변경사항을 반영할 수 없다. 
   return (
     <div className={style.home}>
       <section className={style.section}>

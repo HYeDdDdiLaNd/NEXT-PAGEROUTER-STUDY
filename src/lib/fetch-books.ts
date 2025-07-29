@@ -1,6 +1,6 @@
 
-import type {BookItem} from '@/util/types';
-export default async function fetchBooks(q?: string): Promise<BookItem[]> {
+import type {BookItemType} from '@/util/types';
+export default async function fetchBooks(q?: string): Promise<BookItemType[]> {
     //'?' : 선택적 프로퍼티
     let url = `http://localhost:12345/book`;
 

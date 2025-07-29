@@ -17,11 +17,12 @@
 
 //import type { BookItem } from '@/util/types';
 import style from './index.module.scss';
+import Image from 'next/image';
 import fetchOneBooks from '@/lib/fetch-one-books';
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 
 export const getServerSideProps = async (context : GetServerSidePropsContext) => {
-    console.log(context)
+   // console.log(context)
     const id = context.params!.id;
     const detailBook = await fetchOneBooks(Number(id));
     return {
@@ -45,8 +46,7 @@ export default function Page({detailBook}:InferGetServerSidePropsType<typeof get
         className={style.imgDetail}
         style={{ backgroundImage: `url(${coverImgUrl})` }}
       >
-        <img src={coverImgUrl} alt={title} />
-        {/* <Image src={coverImgUrl} alt={mockData.title} width={240} height={280} /> */}
+        <Image src={coverImgUrl} alt={title} width={240} height={280} />
       </div>
       <div className={style.content}>
         <h2 className={style.title}>{title}</h2>
