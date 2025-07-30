@@ -20,7 +20,7 @@ export const getStaticProps = async() => {
             allBooks,
             recommendBooks,
         }, 
-        revalidate: 3, //3초마다
+        //revalidate: 3, //3초마다
 
 //ssg의 방식에서 빌드타임에서 페이지를 생성하니까 속도는 빠르지만 최신데이터를 유지하기가 어려워서 이걸 보완하고자, ISR로 페이지를 다시 생성하도록한다.
 //getStaticProps 리턴 안에 revalidate 속성을 추가하면 해당 초마다 최신 페이지를 다시 그린다.
